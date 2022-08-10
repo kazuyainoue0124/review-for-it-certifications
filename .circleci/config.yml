@@ -33,7 +33,7 @@ jobs:
           command: docker login -username=_ -p "$HEROKU_API_KEY" registry.heroku.com
       - run:
           name: "build docker image"
-          command: docker build --rm=false -t registry.heroku.com/${HEROKU_APP_NAME}/web .
+          command: docker build -t registry.heroku.com/${HEROKU_APP_NAME}/web .
       - run:
           name: "push container to registry.heroku.com"
           command: docker push registry.heroku.com/${HEROKU_APP_NAME}/web
