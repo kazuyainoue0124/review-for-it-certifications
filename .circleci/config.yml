@@ -36,10 +36,10 @@ jobs:
           command: docker build -t registry.heroku.com/${HEROKU_APP_NAME}/web .
       - run:
           name: "push container to registry.heroku.com"
-          command: docker push registry.heroku.com/${HEROKU_APP_NAME}/web
+          command: docker push registry.heroku.com/$HEROKU_APP_NAME/web
       - run:
           name: "heroku db migrate"
-          command: heroku run --app ${HEROKU_APP_NAME} rails db:migrate
+          command: heroku run --app $HEROKU_APP_NAME rails db:migrate
           
   # deploy:
   #   machine:
