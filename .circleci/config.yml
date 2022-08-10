@@ -31,7 +31,7 @@ jobs:
       - checkout
       - run:
           name: "heroku login"
-          command: docker login --username "$HEROKU_USERNAME" --password-stdin "$HEROKU_API_KEY" registry.heroku.com
+          command: docker login -u "$HEROKU_USERNAME" --password-stdin "$HEROKU_API_KEY" registry.heroku.com
       - run:
           name: "build docker image"
           command: docker build --rm=false -t registry.heroku.com/${HEROKU_APP_NAME}/web .
@@ -41,7 +41,7 @@ jobs:
       - run:
           name: "heroku db migrate"
           command: heroku run --app ${HEROKU_APP_NAME} rails db:migrate
-          
+
   # deploy:
   #   machine:
   #     image: ubuntu-2204:2022.07.1
