@@ -30,7 +30,7 @@ jobs:
       - checkout
       - run:
           name: "heroku login"
-          command: docker login -username=_ --password-stdin="$HEROKU_API_KEY" registry.heroku.com
+          command: docker login -username=_ -p "$HEROKU_API_KEY" registry.heroku.com
       - run:
           name: "build docker image"
           command: docker build --rm=false -t registry.heroku.com/${HEROKU_APP_NAME}/web .
