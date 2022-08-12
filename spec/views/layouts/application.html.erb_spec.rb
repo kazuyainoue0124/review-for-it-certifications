@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "layouts/application.html.erb", type: :view do
+RSpec.describe 'layouts/application.html.erb', type: :view do
   describe 'トップページへアクセス', type: :feature do
     before do
       visit root_path
@@ -8,11 +8,11 @@ RSpec.describe "layouts/application.html.erb", type: :view do
     it 'タイトルが表示されること' do
       expect(page).to have_link 'IT資格の口コミアプリ'
     end
-    
+
     it 'ログインリンクが表示されること' do
       expect(page).to have_link 'ログイン'
     end
-    
+
     it 'ユーザー登録リンクが表示されること' do
       expect(page).to have_link 'ユーザー登録'
     end
