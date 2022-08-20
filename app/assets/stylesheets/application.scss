@@ -1,1 +1,29 @@
 @import "bootstrap";
+
+h1{
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+// Signup-form
+#signup-form .form-control {
+  margin-bottom: 10px;
+}
+#signup-form #password_confirmation {
+  margin-bottom: 40px;
+}
+
+.field_with_errors {
+  display: contents;
+  input, textarea {
+    @extend .is-invalid;
+  }
+}
+
+// Login-form
+#login-form .form-control {
+  margin-bottom: 10px;
+}
+#login-form #password {
+  margin-bottom: 40px;
+}
