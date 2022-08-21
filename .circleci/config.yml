@@ -18,8 +18,8 @@ jobs:
           name: "before_test: setup db"
           command: docker-compose run web rails db:create db:migrate
       - run:
-          name: webpacker install
-          command: docker-compose exec web rails webpacker:install
+          name: webpacker compile
+          command: docker-compose exec web rails webpacker:compile
       - run:
           name: test(rspec)
           command: docker-compose run web rspec
