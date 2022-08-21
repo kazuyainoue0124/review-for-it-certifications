@@ -13,7 +13,6 @@ COPY Gemfile /review_app/Gemfile
 COPY Gemfile.lock /review_app/Gemfile.lock
 RUN bundle install
 COPY . /review_app
-
 RUN yarn install --check-files
 RUN bundle exec rails webpacker:compile
 
