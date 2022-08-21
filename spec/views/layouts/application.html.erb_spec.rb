@@ -14,7 +14,7 @@ RSpec.describe 'layouts/application.html.erb', type: :view do
     end
 
     it 'ユーザー登録リンクが表示されること' do
-      expect(page).to have_link 'ユーザー登録'
+      expect(page).to have_link '新規登録'
     end
 
     it '検索欄が表示されること' do

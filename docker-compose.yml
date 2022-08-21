@@ -19,3 +19,11 @@ services:
       - "3000:3000"
     depends_on:
       - db
+
+  webpacker:
+    build: .
+    command: bundle exec bin/webpack-dev-server
+    volumes:
+      - .:/review_app
+    ports:
+      - "8000:8000"

@@ -13,6 +13,8 @@ AllCops:
     - "node_modules/**/*"
     - "tmp/**/*"
     - "lib/**/*"
+    - "spec/**/*"
+    - "app/helpers/*"
   DisplayCopNames: true
   TargetRubyVersion: 2.6
 
