@@ -15,6 +15,7 @@ RUN bundle install
 COPY . /review_app
 
 RUN yarn install --check-files
+RUN bundle exec rails webpacker:install
 RUN bundle exec rails webpacker:compile
 
 # コンテナ起動時に実行させるスクリプトを追加
