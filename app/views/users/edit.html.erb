@@ -1,0 +1,30 @@
+<% provide(:title, "プロフィール編集") %>
+<% provide(:button_text, "保存") %>
+
+<div class="mb-3 w-75 mx-auto">
+  <h1 class="text-center">プロフィール編集</h1>
+  <div class="col-md-6 col-md-offset-3 mx-auto" id="profile-edit-form">
+    <%= form_with(model: @user, local: true) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= f.label :name, "ユーザー名" %>
+      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.label :position_id, "職種（ポジション）" %>
+      <%= f.collection_select :position_id, Position.all, :id, :name, {include_blank: "選択してください"}, class: 'form-control' %>
+      <%= f.label :job_change_count, "転職回数" %>
+      <%= f.number_field :job_change_count, autocomplete: "off", min: 0, class: 'form-control' %>
+      <%= f.label :salary_before_two_years, "2年前の年収" %>
+      <%= f.select :salary_before_two_years, ['301~350万円', '351~400万円', '401~450万円'], {include_blank: '選択してください'}, class: 'form-control' %>
+      <%= f.label :salary_before_one_years, "1年前の年収" %>
+      <%= f.select :salary_before_one_years, ['301~350万円', '351~400万円', '401~450万円'], {include_blank: '選択してください'}, class: 'form-control' %>
+      <%= f.label :current_salary, "現在の年収" %>
+      <%= f.select :current_salary, ['301~350万円', '351~400万円', '401~450万円'], {include_blank: '選択してください'}, class: 'form-control' %>
+      <%= f.label :certificate_id, "最も役立った資格" %>
+      <%= f.collection_select :certificate_id, Certificate.all, :id, :name, {include_blank: "選択してください"}, class: 'form-control' %>
+      <%= f.label :profile, "自己紹介" %>
+      <%= f.text_area :profile, class: 'form-control' %>
+      <div class="d-grid col-12">
+        <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
