@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   belongs_to :position, optional: true
   belongs_to :certificate, optional: true
+  has_many :posts, dependent: :restrict_with_error
   # メールアドレスの大文字と小文字を区別しない
   before_save { self.email = email.downcase }
   # 名前のバリデーション
