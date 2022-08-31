@@ -30,18 +30,39 @@ h1{
 
 // .user_info
 .user_info {
-  margin-top: 25px;
+  // margin-top: 25px;
 }
 
 .card {
-  border: none;
+  margin-top: 20px;
 }
 
 .card-link {
   font-size: 10px;
 }
 
-// Profile-edit-form
+// profile-edit-form
 #profile-edit-form .form-control {
   margin-bottom: 10px;
+}
+
+// post-create-form
+#post-create-form .form-control {
+  margin-bottom: 10px;
+}
+
+#profile-name{
+  display: inline;
+}
+
+#user-edit-btn{
+  margin-left: 15rem;
+}
+
+.post-subtitle{
+  border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color);
+}
+
+.post-text{
+  margin-bottom: 40px;
 }

@@ -31,6 +31,8 @@ RSpec.describe Post, type: :model do
     # -- nothing
     # recommend_score
     let(:post_without_recommend_score) { build(:post, recommend_score: nil )}
+    # recommended_person
+    # -- nothing
     # comment
     # -- nothing
 
