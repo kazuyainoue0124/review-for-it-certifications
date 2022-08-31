@@ -1,0 +1,45 @@
+<% provide(:title, @post.title) %>
+
+<h1 class="text-center"><%= @post.title %></h1>
+<div class="row">
+  <div class="col-md-3">
+    <section class="user_info">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%=link_to @post.user.name, user_path(@post.user) %></h5>
+          <%= link_to "@user1accountid", "#", class: "card-link" %>
+          <p class="card-text"><%= @post.user.profile %></p>
+          <%= link_to "〇〇 フォロー", "#", class: "card-link" %>
+          <%= link_to "〇〇 フォロワー", "#", class: "card-link" %>
+          <% if current_user?(@post.user) %>
+            <%= link_to "記事を編集", edit_post_path(@post), class: "card-link" %>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="col-md-6 col-md-offset-3 mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="post-subtitle">資格</h2>
+        <p class="post-text"><%= @post.certificate.name %></p>
+        <h2 class="post-subtitle">学習期間</h2>
+        <p class="post-text"><%= @post.study_period %></p>
+        <h2 class="post-subtitle">勉強方法</h2>
+        <p class="post-text"><%= @post.how_to_study %></p>
+        <h2 class="post-subtitle">資格取得が実務に役立ったか？</h2>
+        <p class="post-text"><%= @post.valuable_score %></p>
+        <h2 class="post-subtitle">取得前後でどのような変化があったか？</h2>
+        <p class="post-text"><%= @post.how_change %></p>
+        <h2 class="post-subtitle">おすすめ度</h2>
+        <p class="post-text"><%= @post.recommend_score %></p>
+        <h2 class="post-subtitle">どんな人におすすめか？</h2>
+        <p class="post-text"><%= @post.recommended_person %></p>
+        <h2 class="post-subtitle">コメント</h2>
+        <p class="post-text"><%= @post.comment %></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+  </div>
+</div>

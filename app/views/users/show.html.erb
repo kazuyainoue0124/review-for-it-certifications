@@ -4,21 +4,58 @@
   <% provide(:title, @user.name) %>
 <% end %>
 
-<div class="mb-3 w-75 mx-auto text-center">
-  <section class="user_info mx-auto">
-    <div class="card mx-auto" style="width: 54rem;">
-      <div class="card-body">
-        <h5 class="card-title"><%= @user.name %></h5>
-        <h6><%=  "@user1accountid" %></h6>
-        <%= link_to "〇〇 フォロー", "#", class: "card-link" %>
-        <%= link_to "〇〇 フォロワー", "#", class: "card-link" %>
-        <p class="card-text">職業（ポジション）：<%= @user.position.name if @user.position_id %>　転職回数：<%= @user.job_change_count %>　最も役に立った資格：<%= @user.certificate.name if @user.certificate_id %></p>
-        <p class="card-text">直近3年間の年収推移：<%= @user.salary_before_two_years %> → <%= @user.salary_before_one_years %> → <%= @user.current_salary %></p>
-        <p class="card-text"><%= @user.profile %></p>
+<% if current_user == @user %>
+  <h1 class="text-center">マイページ</h1>
+<% else %>
+  <h1 class="text-center">ユーザー詳細</h1>
+<% end %>
+<div class="row">
+<% if logged_in? %>
+  <div class="col-md-3">
+    <section class="user_info">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%=link_to current_user.name, user_path(current_user) %></h5>
+          <%= link_to "@user1accountid", "#", class: "card-link" %>
+          <p class="card-text"><%= current_user.profile %></p>
+          <%= link_to "〇〇 フォロー", "#", class: "card-link" %>
+          <%= link_to "〇〇 フォロワー", "#", class: "card-link" %>
+        </div>
+      </div>
+    </section>
+  </div>
+<% end %>
+  <div class="col-md-6 col-md-offset-3 mx-auto">
+    <div class="card">
+      <div class="card-body text-left">
+        <h5 class="card-title text-left" id="profile-name"><%= @user.name %></h5>
         <% if current_user?(@user) %>
-          <%= link_to "編集", edit_user_path(current_user), class: "btn btn-primary" %>
+          <%= link_to "編集", edit_user_path(current_user), class: "btn btn-primary btn-lg", id: "user-edit-btn" %>
         <% end %>
+        <h6 class=""><%=  "@user1accountid" %></h6>
+        <p class="card-text">
+          <%= link_to "〇〇 フォロー", "#", class: "card-link" %>
+          <%= link_to "〇〇 フォロワー", "#", class: "card-link" %>
+        </p>
+        <p class="card-text">職業（ポジション）：<%= @user.position.name if @user.position_id %></p>
+        <p class="card-text">転職回数：<%= @user.job_change_count %>回</p>
+        <p class="card-text">最も役に立った資格：<%= @user.certificate.name if @user.certificate_id %></p>
+        <p class="card-text">3年間の年収推移：<%= @user.salary_before_two_years %> → <%= @user.salary_before_one_years %> → <%= @user.current_salary %></p>
+        <p class="card-text">自己紹介：<%= @user.profile %></p>
       </div>
     </div>
-  </section>
+
+    <% if @user.posts.any? %>
+      <% @posts.each do |post| %>
+        <div class="card">
+          <h5 class="card-header"><%= link_to post.user.name, user_path(post.user) %></h5>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to post.title, post_path(post.id) %></h5>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-md-3">
+  </div>
 </div>

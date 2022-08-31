@@ -1,0 +1,32 @@
+<% provide(:title, "新規投稿") %>
+<% provide(:button_text, "投稿") %>
+
+<div class="mb-3 w-75 mx-auto">
+  <h1 class="text-center">新規投稿</h1>
+  <div class="col-md-6 col-md-offset-3 mx-auto" id="post-create-form">
+    <%= form_with(model: @post, local: true) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= f.label :title, "タイトル" %>
+      <%= f.text_field :title, class: 'form-control' %>
+      <%= f.label :certificate_id, "資格" %>
+      <%= f.collection_select :certificate_id, Certificate.all, :id, :name, {include_blank: "選択してください"}, class: 'form-control' %>
+      <%= f.label :study_period, "学習期間" %>
+      <%= f.select :study_period, ['~1ヶ月', '~2ヶ月', '~3ヶ月', '~4ヶ月', '~5ヶ月', '~6ヶ月', '~7ヶ月', '~8ヶ月', '~9ヶ月', '~10ヶ月', '~11ヶ月', '~12ヶ月', '13ヶ月以上'], {include_blank: '選択してください'}, class: 'form-control' %>
+      <%= f.label :how_to_study, "勉強方法" %>
+      <%= f.text_area :how_to_study, class: 'form-control' %>
+      <%= f.label :valuable_score, "資格取得が実務に役立ったか？" %>
+      <%= f.select :valuable_score, ["すごく役に立った", "どちらかと言うと役に立った", "どちらとも言えない", "どちらかと言うと役に立ってない", "まったく役に立ってない"], {include_blank: '選択してください'}, class: 'form-control' %>
+      <%= f.label :how_change, "取得前後でどのような変化があったか？" %>
+      <%= f.text_area :how_change, class: 'form-control' %>
+      <%= f.label :recommend_score, "おすすめ度" %>
+      <%= f.select :recommend_score, ["すごくおすすめ", "どちらかと言うとおすすめ", "どちらとも言えない", "どちらかと言うとおすすめではない", "まったくおすすめではない"], {include_blank: '選択してください'}, class: 'form-control' %>
+      <%= f.label :recommended_person, "どんな人におすすめか？" %>
+      <%= f.text_area :recommended_person, class: 'form-control' %>
+      <%= f.label :comment, "コメント" %>
+      <%= f.text_area :comment, class: 'form-control' %>
+      <div class="d-grid col-12">
+        <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

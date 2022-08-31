@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts
   end
 
   def edit
@@ -37,20 +38,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :job_change_count, :salary_before_two_years, :salary_before_two_years,
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :job_change_count, :salary_before_two_years, :salary_before_one_years,
                                  :current_salary, :profile, :certificate_id, :position_id)
   end
 
   # beforeアクション
-
-  # ログイン済みユーザーかどうか確認
-  def logged_in_user
-    return if logged_in?
-
-    store_location
-    flash[:danger] = 'ログインが必要です！'
-    redirect_to login_path
-  end
 
   # 正しいユーザーかどうか確認
   def correct_user

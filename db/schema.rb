@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_27_124516) do
+ActiveRecord::Schema.define(version: 2022_08_31_100623) do
 
   create_table "certificates", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(version: 2022_08_27_124516) do
     t.string "title"
     t.string "study_period"
     t.text "how_to_study"
-    t.integer "valuable_score"
+    t.string "valuable_score"
     t.text "how_change"
-    t.integer "recommend_score"
+    t.string "recommend_score"
     t.text "recommended_person"
     t.text "comment"
     t.bigint "user_id", null: false
