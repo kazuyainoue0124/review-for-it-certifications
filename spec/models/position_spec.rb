@@ -28,7 +28,7 @@ RSpec.describe Position, type: :model do
       it '名前が51文字以上なら無効である' do
         position_with_51_characters_name.valid?
         expect(position_with_51_characters_name.errors[:name]).to include('is too long (maximum is 50 characters)')
-     end
+      end
 
       it '名前が重複しているなら無効である' do
         expect(position_with_duplicate_name1).to be_valid

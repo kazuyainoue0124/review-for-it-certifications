@@ -5,7 +5,6 @@ FactoryBot.define do
       sequence(:email) { |n| "user#{n}@example.com" }
       password { 'useruser' }
       password_confirmation { 'useruser' }
-
     end
     trait :b do
       name { 'サンプルユーザー2' }

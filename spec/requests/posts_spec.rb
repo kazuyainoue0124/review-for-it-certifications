@@ -13,9 +13,9 @@ RSpec.describe 'Posts', type: :request do
   describe 'POST /posts #create' do
     context '未ログインの場合' do
       it '登録されないこと' do
-        expect {
+        expect do
           post posts_path, params: post_params
-        }.to_not change(Post, :count)
+        end.to_not change(Post, :count)
       end
       it 'ログインページへリダイレクトされること' do
         post posts_path, params: post_params
@@ -23,5 +23,4 @@ RSpec.describe 'Posts', type: :request do
       end
     end
   end
-  
 end
