@@ -32,7 +32,7 @@ RSpec.describe 'Sessions', type: :request do
     end
   end
 
-  describe "DELETE /logout #destroy" do
+  describe 'DELETE /logout #destroy' do
     before do
       post login_path, params: { session: { email: user.email, password: user.password } }
     end
@@ -49,5 +49,4 @@ RSpec.describe 'Sessions', type: :request do
       expect(response).to redirect_to root_path
     end
   end
-  
 end

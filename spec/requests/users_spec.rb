@@ -21,19 +21,19 @@ RSpec.describe 'Users', type: :request do
 
   describe 'POST /users #create' do
     it '無効な値だと登録されないこと' do
-      expect {
-        post users_path, params: {user: { name: '',
-                                          email: 'user@invalid',
-                                          password: 'foo',
-                                          password_confirmation: 'bar'}}
-        }.to_not change(User, :count)
+      expect do
+        post users_path, params: { user: { name: '',
+                                           email: 'user@invalid',
+                                           password: 'foo',
+                                           password_confirmation: 'bar' } }
+      end.to_not change(User, :count)
     end
 
     context '有効な値の場合' do
       it '登録されること' do
-        expect {
+        expect do
           post users_path, params: user_params
-        }.to change(User, :count).by 1
+        end.to change(User, :count).by 1
       end
 
       it 'root_pathにリダイレクトされること' do
@@ -95,10 +95,8 @@ RSpec.describe 'Users', type: :request do
       end
     end
   end
-  
 
   describe 'PATCH /users #update' do
-
     it 'タイトルが「プロフィール編集|IT資格の口コミアプリ」であること' do
       log_in user
       get edit_user_path(user)

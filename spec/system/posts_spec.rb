@@ -14,7 +14,7 @@ RSpec.describe 'Posts', type: :system do
   describe '#create' do
     context '有効な送信の場合' do
       it '投稿されること' do
-        expect {
+        expect do
           fill_in 'post_title', with: post.title
           select '基本情報技術者', from: 'post_certificate_id'
           select '~1ヶ月', from: 'post_study_period'
@@ -25,7 +25,7 @@ RSpec.describe 'Posts', type: :system do
           fill_in 'post_recommended_person',	with: post.recommended_person
           fill_in 'post_comment',	with: post.comment
           click_button '投稿'
-        }.to change(Post, :count).by 1
+        end.to change(Post, :count).by 1
         expect(page).to have_content '記事を投稿しました！'
       end
     end
@@ -45,7 +45,5 @@ RSpec.describe 'Posts', type: :system do
         expect(page).to have_selector 'div.alert.alert-danger'
       end
     end
-
   end
-
 end

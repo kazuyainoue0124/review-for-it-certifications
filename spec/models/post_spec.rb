@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  describe "ポストモデルのバリデーションチェック" do
+  describe 'ポストモデルのバリデーションチェック' do
     let!(:certificate) { create(:certificate, :a) }
     let!(:certificate) { create(:certificate, :b) }
     let!(:certificate) { create(:certificate, :c) }
@@ -12,7 +12,7 @@ RSpec.describe Post, type: :model do
     let!(:user) { create(:user, :b) }
     let!(:user) { create(:user, :c) }
     let(:post) { create(:post) }
-    let(:post_with_only_necessary_columns) { build(:post, how_to_study: nil, how_change: nil, recommended_person: nil )}
+    let(:post_with_only_necessary_columns) { build(:post, how_to_study: nil, how_change: nil, recommended_person: nil) }
     # user_id
     let(:post_without_user_id) { build(:post, user_id: nil) }
     # title
@@ -26,11 +26,11 @@ RSpec.describe Post, type: :model do
     # how_to_study
     # -- nothing
     # valuable_score
-    let(:post_without_valuable_score) { build(:post, valuable_score: nil )}
+    let(:post_without_valuable_score) { build(:post, valuable_score: nil) }
     # how_change
     # -- nothing
     # recommend_score
-    let(:post_without_recommend_score) { build(:post, recommend_score: nil )}
+    let(:post_without_recommend_score) { build(:post, recommend_score: nil) }
     # recommended_person
     # -- nothing
     # comment
@@ -81,7 +81,6 @@ RSpec.describe Post, type: :model do
         post_without_recommend_score.valid?
         expect(post_without_recommend_score.errors[:recommend_score]).to include("can't be blank")
       end
-
     end
   end
 end

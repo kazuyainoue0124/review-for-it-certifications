@@ -35,9 +35,6 @@ RSpec.describe Certificate, type: :model do
         certificate_with_duplicate_name2.valid?
         expect(certificate_with_duplicate_name2.errors[:name]).to include('has already been taken')
       end
-
     end
-
   end
-
 end
