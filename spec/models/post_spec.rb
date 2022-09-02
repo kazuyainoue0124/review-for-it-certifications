@@ -81,6 +81,7 @@ RSpec.describe Post, type: :model do
         post_without_recommend_score.valid?
         expect(post_without_recommend_score.errors[:recommend_score]).to include("can't be blank")
       end
+
     end
   end
 end
