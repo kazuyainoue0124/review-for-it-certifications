@@ -45,17 +45,17 @@ RSpec.describe User, type: :model do
     context 'ユーザーデータが無効なとき' do
       it '名前がなければ無効である' do
         user_without_name.valid?
-        expect(user_without_name.errors[:name]).to include("can't be blank")
+        expect(user_without_name.errors[:name]).to include('を入力してください')
       end
 
       it '名前が16文字以上であれば無効である' do
         user_with_16_characters_name.valid?
-        expect(user_with_16_characters_name.errors[:name]).to include('is too long (maximum is 15 characters)')
+        expect(user_with_16_characters_name.errors[:name]).to include('は15文字以内で入力してください')
       end
 
       it 'メールアドレスがなければ無効である' do
         user_without_email.valid?
-        expect(user_without_email.errors[:email]).to include("can't be blank")
+        expect(user_without_email.errors[:email]).to include('を入力してください')
       end
 
       it 'メールアドレスが正規表現に沿っていなければ無効である' do
@@ -69,27 +69,27 @@ RSpec.describe User, type: :model do
       it '重複したメールアドレスであれば無効である' do
         expect(user_with_duplicate_email1).to be_valid
         user_with_duplicate_email2.valid?
-        expect(user_with_duplicate_email2.errors[:email]).to include('has already been taken')
+        expect(user_with_duplicate_email2.errors[:email]).to include('はすでに存在します')
       end
 
       it 'パスワードがなければ無効である' do
         user_without_password.valid?
-        expect(user_without_password.errors[:password]).to include("can't be blank")
+        expect(user_without_password.errors[:password]).to include('を入力してください')
       end
 
       it 'パスワードが5文字以下であれば無効である' do
         user_with_5_characters_password.valid?
-        expect(user_with_5_characters_password.errors[:password]).to include('is too short (minimum is 6 characters)')
+        expect(user_with_5_characters_password.errors[:password]).to include('は6文字以上で入力してください')
       end
 
       it 'パスワードが11文字以上であれば無効である' do
         user_with_11_characters_password.valid?
-        expect(user_with_11_characters_password.errors[:password]).to include('is too long (maximum is 10 characters)')
+        expect(user_with_11_characters_password.errors[:password]).to include('は10文字以内で入力してください')
       end
 
       it 'パスワードとパスワード確認が不一致であれば無効である' do
         user_with_password_correspond_not_to_password_confirmation.valid?
-        expect(user_with_password_correspond_not_to_password_confirmation.errors[:password_confirmation]).to include("doesn't match Password")
+        expect(user_with_password_correspond_not_to_password_confirmation.errors[:password_confirmation]).to include('とパスワードの入力が一致しません')
       end
     end
   end

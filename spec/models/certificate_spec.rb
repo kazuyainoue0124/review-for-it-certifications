@@ -22,18 +22,18 @@ RSpec.describe Certificate, type: :model do
     context '資格データが無効なとき' do
       it '名前がなければ無効である' do
         certificate_without_name.valid?
-        expect(certificate_without_name.errors[:name]).to include("can't be blank")
+        expect(certificate_without_name.errors[:name]).to include('を入力してください')
       end
 
       it '名前が51文字以上なら無効である' do
         certificate_with_51_characters_name.valid?
-        expect(certificate_with_51_characters_name.errors[:name]).to include('is too long (maximum is 50 characters)')
+        expect(certificate_with_51_characters_name.errors[:name]).to include('は50文字以内で入力してください')
       end
 
       it '名前が重複しているなら無効である' do
         expect(certificate_with_duplicate_name1).to be_valid
         certificate_with_duplicate_name2.valid?
-        expect(certificate_with_duplicate_name2.errors[:name]).to include('has already been taken')
+        expect(certificate_with_duplicate_name2.errors[:name]).to include('はすでに存在します')
       end
     end
   end

@@ -49,37 +49,37 @@ RSpec.describe Post, type: :model do
     context 'ポストデータが無効なとき' do
       it 'ユーザーIDがなければ無効である' do
         post_without_user_id.valid?
-        expect(post_without_user_id.errors[:user_id]).to include("can't be blank")
+        expect(post_without_user_id.errors[:user_id]).to include('を入力してください')
       end
 
       it 'タイトルがなければ無効である' do
         post_without_title.valid?
-        expect(post_without_title.errors[:title]).to include("can't be blank")
+        expect(post_without_title.errors[:title]).to include('を入力してください')
       end
 
       it 'タイトルが51文字以上であれば無効である' do
         post_with_51_characters_title.valid?
-        expect(post_with_51_characters_title.errors[:title]).to include('is too long (maximum is 50 characters)')
+        expect(post_with_51_characters_title.errors[:title]).to include('は50文字以内で入力してください')
       end
 
       it '資格IDがなければ無効である' do
         post_without_certificate_id.valid?
-        expect(post_without_certificate_id.errors[:certificate_id]).to include("can't be blank")
+        expect(post_without_certificate_id.errors[:certificate_id]).to include('を入力してください')
       end
 
       it '学習期間がなければ無効である' do
         post_without_study_period.valid?
-        expect(post_without_study_period.errors[:study_period]).to include("can't be blank")
+        expect(post_without_study_period.errors[:study_period]).to include('を入力してください')
       end
 
       it '実務に役立った度がなければ無効である' do
         post_without_valuable_score.valid?
-        expect(post_without_valuable_score.errors[:valuable_score]).to include("can't be blank")
+        expect(post_without_valuable_score.errors[:valuable_score]).to include('を入力してください')
       end
 
       it 'おすすめ度がなければ無効である' do
         post_without_recommend_score.valid?
-        expect(post_without_recommend_score.errors[:recommend_score]).to include("can't be blank")
+        expect(post_without_recommend_score.errors[:recommend_score]).to include('を入力してください')
       end
     end
   end
