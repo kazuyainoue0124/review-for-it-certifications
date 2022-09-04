@@ -15,7 +15,7 @@ RUN bundle install
 COPY . /review_app
 RUN yarn install --check-files
 RUN yarn add bootstrap jquery @popperjs/core @fortawesome/fontawesome-free
-RUN bundle exec rails webpacker:compile
+# RUN bundle exec rails webpacker:compile
 
 # コンテナ起動時に実行させるスクリプトを追加
 COPY entrypoint.sh /usr/bin/
