@@ -1,0 +1,69 @@
+@import 'bootstrap/scss/bootstrap';
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+
+h1{
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+// Signup-form
+#signup-form .form-control {
+  margin-bottom: 10px;
+}
+#signup-form #password_confirmation {
+  margin-bottom: 40px;
+}
+
+.field_with_errors {
+  display: contents;
+  input, textarea {
+    @extend .is-invalid;
+  }
+}
+
+// Login-form
+#login-form .form-control {
+  margin-bottom: 10px;
+}
+#login-form #password {
+  margin-bottom: 40px;
+}
+
+// .user_info
+.user_info {
+  // margin-top: 25px;
+}
+
+.card {
+  margin-top: 20px;
+}
+
+.card-link {
+  font-size: 10px;
+}
+
+// profile-edit-form
+#profile-edit-form .form-control {
+  margin-bottom: 10px;
+}
+
+// post-create-form
+#post-create-form .form-control {
+  margin-bottom: 10px;
+}
+
+#profile-name{
+  display: inline;
+}
+
+#user-edit-btn{
+  margin-left: 15rem;
+}
+
+.post-subtitle{
+  border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color);
+}
+
+.post-text{
+  margin-bottom: 40px;
+}

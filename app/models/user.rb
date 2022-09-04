@@ -13,4 +13,9 @@ class User < ApplicationRecord
   has_secure_password
   # パスワードのバリデーションチェック
   validates :password, presence: true, length: { minimum: 6, maximum: 10 }, allow_nil: true
+
+  # ユーザー検索
+  def self.search(word)
+    @user = User.where('profile LIKE?', "%#{word}%")
+  end
 end
