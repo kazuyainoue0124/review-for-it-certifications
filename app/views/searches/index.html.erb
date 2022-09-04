@@ -1,0 +1,92 @@
+<% provide(:title, "検索結果") %>
+
+  <h1 class="text-center">'<%= params[:word] %>' の検索結果</h1>
+  <div class="row">
+  <% if logged_in? %>
+    <div class="col-md-3">
+      <section class="user_info">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%=link_to current_user.name, user_path(current_user) %></h5>
+            <%= link_to "@user1accountid", "#", class: "card-link" %>
+            <p class="card-text"><%= current_user.profile %></p>
+            <%= link_to "〇〇 フォロー", "#", class: "card-link" %>
+            <%= link_to "〇〇 フォロワー", "#", class: "card-link" %>
+          </div>
+        </div>
+      </section>
+    </div>
+  <% else %>
+  <div class="col-md-3">
+  </div>
+  <% end %>
+  <div class="col-md-6 col-md-offset-3 mx-auto">
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button
+          class="nav-link active"
+          id="nav-post-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#nav-post"
+          type="button"
+          role="tab"
+          aria-controls="nav-post"
+          aria-selected="true"
+        >
+          記事
+        </button>
+        <button
+          class="nav-link"
+          id="nav-user-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#nav-user"
+          type="button"
+          role="tab"
+          aria-controls="nav-user"
+          aria-selected="false"
+        >
+          ユーザー
+        </button>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div
+        class="tab-pane fade show active"
+        id="nav-post"
+        role="tabpanel"
+        aria-labelledby="nav-post-tab"
+      >
+        <% @posts.each do |post| %>
+          <div class="card">
+            <h5 class="card-header"><%= link_to post.user.name, user_path(post.user) %></h5>
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to post.title, post_path(post.id) %></h5>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="nav-user"
+        role="tabpanel"
+        aria-labelledby="nav-user-tab"
+      >
+        <% @users.each do |user| %>
+          <div class="card">
+            <h5 class="card-header"><%= link_to user.name, user_path(user) %></h5>
+            <div class="card-body">
+              <p class="card-text">職業（ポジション）：<%= user.position.name if user.position_id %></p>
+              <p class="card-text">転職回数：<%= user.job_change_count if user.job_change_count %>回</p>
+              <p class="card-text">最も役に立った資格：<%= user.certificate.name if user.certificate_id %></p>
+              <p class="card-text">3年間の年収推移：<%= user.salary_before_two_years if user.salary_before_two_years %> → <%= user.salary_before_one_years if user.salary_before_one_years %> → <%= user.current_salary if user.current_salary %></p>
+              <p class="card-text">自己紹介：<%= user.profile if user.profile %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+  </div>
+  </div>
+

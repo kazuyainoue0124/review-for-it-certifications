@@ -8,4 +8,9 @@ class Post < ApplicationRecord
   validates :study_period, presence: true
   validates :valuable_score, presence: true
   validates :recommend_score, presence: true
+
+  # 記事検索
+  def self.search(word)
+    @post = Post.where('title LIKE?', "%#{word}%")
+  end
 end
