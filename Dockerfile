@@ -14,6 +14,7 @@ COPY Gemfile.lock /review_app/Gemfile.lock
 RUN bundle install
 COPY . /review_app
 RUN yarn install --check-files
+RUN yarn add bootstrap jquery @popperjs/core @fortawesome/fontawesome-free
 RUN bundle exec rails webpacker:compile
 
 # コンテナ起動時に実行させるスクリプトを追加
@@ -23,4 +24,6 @@ ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
 # Rails サーバ起動
-CMD ["rails", "server", "-b", "0.0.0.0"]
+COPY startup.sh /startup.sh
+RUN chmod 744 /startup.sh
+CMD ["/startup.sh"]
