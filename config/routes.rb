@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'relationships/followings'
+  get 'relationships/followers'
   root 'posts#index'
   get 'posts/index'
   get '/signup', to: 'users#new'
@@ -8,4 +10,9 @@ Rails.application.routes.draw do
   get '/search', to: 'searches#index'
   resources :users
   resources :posts
+  resources :users do
+    resource :relationships, only: %i[create destroy]
+    get '/followings' => 'relationships#followings', as: 'followings'
+    get '/followers' => 'relationships#followers', as: 'followers'
+  end
 end

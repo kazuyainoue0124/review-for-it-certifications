@@ -18,8 +18,8 @@
           <h5 class="card-title"><%=link_to current_user.name, user_path(current_user) %></h5>
           <%= link_to "@user1accountid", "#", class: "card-link" %>
           <p class="card-text"><%= current_user.profile %></p>
-          <%= link_to "〇〇 フォロー", "#", class: "card-link" %>
-          <%= link_to "〇〇 フォロワー", "#", class: "card-link" %>
+          <%= link_to current_user.followings.count.to_s + " フォロー", user_followings_path(current_user), class: "card-link" %>
+          <%= link_to current_user.followers.count.to_s + " フォロワー", user_followers_path(current_user), class: "card-link" %>
         </div>
       </div>
     </section>
@@ -34,11 +34,17 @@
         <h5 class="card-title text-left" id="profile-name"><%= @user.name %></h5>
         <% if current_user?(@user) %>
           <%= link_to "編集", edit_user_path(current_user), class: "btn btn-primary btn-lg", id: "user-edit-btn" %>
+        <% else %>
+          <% if current_user.following?(@user) %>
+            <%= link_to "フォロー解除", user_relationships_path(@user.id), method: :delete, class: "btn btn-primary btn-lg", id: "follow-btn" %>
+          <% else %>
+            <%= link_to "フォロー", user_relationships_path(@user.id), method: :post, class: "btn btn-primary btn-lg", id: "follow-btn" %>
+          <% end %>
         <% end %>
         <h6 class=""><%=  "@user1accountid" %></h6>
         <p class="card-text">
-          <%= link_to "〇〇 フォロー", "#", class: "card-link" %>
-          <%= link_to "〇〇 フォロワー", "#", class: "card-link" %>
+          <%= link_to @user.followings.count.to_s + " フォロー", user_followings_path(@user), class: "card-link" %>
+          <%= link_to @user.followers.count.to_s + " フォロワー", user_followers_path(@user), class: "card-link" %>
         </p>
         <p class="card-text">職業（ポジション）：<%= @user.position.name if @user.position_id %></p>
         <p class="card-text">転職回数：<%= @user.job_change_count %>回</p>
