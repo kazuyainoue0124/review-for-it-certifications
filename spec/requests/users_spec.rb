@@ -13,9 +13,17 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'GET /:id #show' do
-    it 'タイトルが「ユーザー詳細|IT資格の口コミアプリ」であること' do
+    let!(:another_user) { create(:user, :b) }
+    it '他ユーザーの場合、タイトルが「ユーザー詳細|IT資格の口コミアプリ」であること' do
+      log_in(user)
+      get user_path(another_user)
+      expect(response.body).to include full_title(another_user.name)
+    end
+
+    it '自分の場合、タイトルが「マイページ|IT資格の口コミアプリ」であること' do
+      log_in(user)
       get user_path(user)
-      expect(response.body).to include full_title(user.name)
+      expect(response.body).to include full_title('マイページ')
     end
   end
 
