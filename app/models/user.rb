@@ -3,8 +3,8 @@ class User < ApplicationRecord
   belongs_to :certificate, optional: true
   has_many :posts, dependent: :restrict_with_error
   # フォローする、される
-  has_many :relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy, inverse_of: 'uesr'
-  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy, inverse_of: 'uesr'
+  has_many :relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy, inverse_of: 'follower'
+  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy, inverse_of: 'followed'
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
   # メールアドレスの大文字と小文字を区別しない
