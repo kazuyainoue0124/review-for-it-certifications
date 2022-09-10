@@ -15,4 +15,10 @@ Rails.application.routes.draw do
     get '/followings' => 'relationships#followings', as: 'followings'
     get '/followers' => 'relationships#followers', as: 'followers'
   end
+  resources :posts do
+    resources :bookmarks, only: %i[create destroy]
+  end
+  resources :users do
+    resources :bookmarks, only: [:index]
+  end
 end
