@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :bookmark do
+  factory :like do
     trait :a do
       user_id { 1 }
       post_id { 1 }

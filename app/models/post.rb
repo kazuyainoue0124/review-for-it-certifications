@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :certificate, optional: true
   has_many :bookmarks, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
@@ -19,5 +20,10 @@ class Post < ApplicationRecord
   # ブックマーク済かチェック
   def bookmarked_by?(user)
     bookmarks.where(user_id: user.id).exists?
+  end
+
+  # いいね！済かチェック
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
   end
 end

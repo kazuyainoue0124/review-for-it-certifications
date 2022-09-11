@@ -28,6 +28,11 @@
       <% else %>
         <%= link_to "ブックマーク", post_bookmarks_path(@post), method: :post %>
       <% end %>
+      <% if @post.liked_by?(current_user) %>
+        <%= link_to "いいね！を外す", post_like_path(@post), method: :delete %>
+      <% else %>
+        <%= link_to "いいね！", post_likes_path(@post), method: :post %>
+      <% end %>
     </div>
   </div>
   <div class="col-md-3">

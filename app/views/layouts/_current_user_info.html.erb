@@ -9,7 +9,7 @@
           <%= link_to current_user.followings.count.to_s + " フォロー", user_followings_path(current_user), class: "card-link" %>
           <%= link_to current_user.followers.count.to_s + " フォロワー", user_followers_path(current_user), class: "card-link" %>
           <p class="card-text"><i class="fa-solid fa-bookmark"></i> <%= link_to "ブックマーク", user_bookmarks_path(current_user), class: "card-link" %></p>
-          <p class="card-text"><i class="fa-solid fa-thumbs-up"></i> <%= link_to "いいね！", "#", class: "card-link" %></p>
+          <p class="card-text"><i class="fa-solid fa-thumbs-up"></i> <%= link_to "いいね！", user_likes_path(current_user), class: "card-link" %></p>
         </div>
       </div>
     </section>
