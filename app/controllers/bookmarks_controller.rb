@@ -2,7 +2,7 @@ class BookmarksController < ApplicationController
   before_action :logged_in_user
 
   def index
-    @bookmarks = Bookmark.where(user_id: current_user.id)
+    @pagy, @bookmarks = pagy(Bookmark.where(user_id: current_user.id))
   end
 
   def create
