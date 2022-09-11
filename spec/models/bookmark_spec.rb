@@ -30,5 +30,4 @@ RSpec.describe Bookmark, type: :model do
       end
     end
   end
-
 end

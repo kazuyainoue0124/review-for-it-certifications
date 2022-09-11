@@ -1,0 +1,8 @@
+<% @likes.each do |like| %>
+  <div class="card">
+    <h5 class="card-header"><%= link_to like.post.user.name, user_path(like.post.user) %></h5>
+    <div class="card-body">
+      <h5 class="card-title"><%= link_to like.post.title, post_path(like.post.id) %></h5>
+    </div>
+  </div>
+<% end %>

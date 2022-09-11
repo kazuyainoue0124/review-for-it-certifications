@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  get 'relationships/followings'
-  get 'relationships/followers'
   root 'posts#index'
-  get 'posts/index'
+  get 'posts/index', to: 'posts#index'
   get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -17,8 +15,10 @@ Rails.application.routes.draw do
   end
   resources :posts do
     resources :bookmarks, only: %i[create destroy]
+    resources :likes, only: %i[create destroy]
   end
   resources :users do
     resources :bookmarks, only: [:index]
+    resources :likes, only: [:index]
   end
 end

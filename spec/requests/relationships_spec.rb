@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Relationships", type: :request do
+RSpec.describe 'Relationships', type: :request do
   # describe "GET /followings" do
   #   it "returns http success" do
   #     get "/relationships/followings"
@@ -14,5 +14,4 @@ RSpec.describe "Relationships", type: :request do
   #     expect(response).to have_http_status(:success)
   #   end
   # end
-
 end
