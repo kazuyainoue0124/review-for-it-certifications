@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def full_title(page_title = '')
     base_title = 'IT資格の口コミアプリ'
     if page_title.empty?
