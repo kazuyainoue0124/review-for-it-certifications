@@ -23,18 +23,28 @@
         <h2 class="post-subtitle">コメント</h2>
         <p class="post-text"><%= @post.comment %></p>
       </div>
+      <div class="bookmark-or-like">
       <% if !current_user?(@post.user) %>
         <% if @post.bookmarked_by?(current_user) %>
-          <%= link_to "ブックマークを外す", post_bookmark_path(@post), method: :delete %>
+          <%= link_to post_bookmark_path(@post), method: :delete do %>
+            <i class="fa-solid fa-bookmark"></i>　ブックマークを外す　　
+          <% end %>
         <% else %>
-          <%= link_to "ブックマーク", post_bookmarks_path(@post), method: :post %>
+          <%= link_to post_bookmarks_path(@post), method: :post do %>
+            <i class="fa-regular fa-bookmark"></i>　ブックマーク　　
+          <% end %>
         <% end %>
         <% if @post.liked_by?(current_user) %>
-          <%= link_to "いいね！を外す", post_like_path(@post), method: :delete %>
+          <%= link_to post_like_path(@post), method: :delete do %>
+            <i class="fa-solid fa-thumbs-up"></i>　いいね！を外す
+          <% end %>
         <% else %>
-          <%= link_to "いいね！", post_likes_path(@post), method: :post %>
+          <%= link_to post_likes_path(@post), method: :post do %>
+            <i class="fa-regular fa-thumbs-up"></i>　いいね！
+          <% end %>
         <% end %>
       <% end %>
+      </div>
     </div>
   </div>
   <div class="col-md-3">
