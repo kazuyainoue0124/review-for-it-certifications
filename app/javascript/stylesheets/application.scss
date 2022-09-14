@@ -6,9 +6,10 @@ body {
   line-height: 1.8;
   letter-spacing: .1em;
   color: #546E7A;
+  background-color: rgb(247,250,255);
 }
 
-a {
+a { 
   text-decoration: none;
   color: inherit;
 }
@@ -55,10 +56,23 @@ h1{
 .card {
   margin-top: 20px;
   margin-bottom: 20px;
+  padding: 10px;
+}
+
+.card-header {
+  background-color: white;
 }
 
 .card-link {
   font-size: 10px;
+}
+
+.bookmark-link {
+  margin-bottom: 0;
+}
+
+.like-link {
+  margin-bottom: 0;
 }
 
 // profile-edit-form
