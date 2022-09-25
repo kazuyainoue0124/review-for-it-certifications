@@ -49,6 +49,9 @@ jobs:
       - run:
           name: "heroku db migrate"
           command: heroku run --app $HEROKU_APP_NAME rails db:migrate
+      - run:
+          name: "input sample data to heroku"
+          command: heroku run --app $HEROKU_APP_NAME rails db:seed
 workflows:
   version: 2
   build_and_deploy:
