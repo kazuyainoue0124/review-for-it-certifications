@@ -48,5 +48,13 @@ test:
 #   password: <%= ENV['DB_PASSWORD'] %>
 #   database: <%= ENV['DB_NAME'] %>
 
+# heroku版
+# production:
+#   url: <%= ENV['DATABASE_URL'] %>
+
 production:
-  url: <%= ENV['DATABASE_URL'] %>
+  <<: *default
+  database: review_app_production
+  username: root
+  password: <%= ENV["DB_PASSWORD"] %>
+  host: db

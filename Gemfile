@@ -73,4 +73,6 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # You don't have net-smtp installed in your application.
+gem 'net-imap'
+gem 'net-pop'
 gem 'net-smtp'

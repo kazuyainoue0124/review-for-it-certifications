@@ -7,31 +7,31 @@ jobs:
       - checkout
       - run:
           name: docker-compose build
-          command: docker-compose build
+          command: docker-compose -f docker-compose-dev.yml build
       - run:
           name: docker-compose up
-          command: docker-compose up -d
+          command: docker-compose -f docker-compose-dev.yml up -d
       - run:
           name: sleep for waiting launch db
           command: sleep 1
       - run:
           name: "before_test: setup db"
-          command: docker-compose run web rails db:create db:migrate
+          command: docker-compose -f docker-compose-dev.yml run web rails db:create db:migrate
       - run:
           name: yarn install
-          command: docker-compose run web yarn install
+          command: docker-compose -f docker-compose-dev.yml run web yarn install
       - run:
           name: webpacker install
-          command: docker-compose run web bundle exec bin/webpack
+          command: docker-compose -f docker-compose-dev.yml run web bundle exec bin/webpack
       - run:
           name: test(rspec)
-          command: docker-compose run --rm web rspec
+          command: docker-compose -f docker-compose-dev.yml run --rm web rspec
       - run:
           name: test(rubocop)
-          command: docker-compose run --rm web rubocop
+          command: docker-compose -f docker-compose-dev.yml run --rm web rubocop
       - run:
           name: docker-compose down
-          command: docker-compose down
+          command: docker-compose -f docker-compose-dev.yml down
   deploy:
     machine:
       image: ubuntu-2204:2022.07.1
@@ -42,7 +42,7 @@ jobs:
           command: docker login -username=_ -p "$HEROKU_API_KEY" registry.heroku.com
       - run:
           name: "build docker image"
-          command: docker build --tag registry.heroku.com/$HEROKU_APP_NAME/web .
+          command: docker build --tag registry.heroku.com/$HEROKU_APP_NAME/web -f Dockerfile.prod .
       - run:
           name: "push container to registry.heroku.com"
           command: docker push registry.heroku.com/$HEROKU_APP_NAME/web
