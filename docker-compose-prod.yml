@@ -43,8 +43,8 @@ services:
       - rails
 
 volumes:
-  db:
-    driver: local
+  # db:
+  #   driver: local
   public-data:
   tmp-data:
   log-data:
