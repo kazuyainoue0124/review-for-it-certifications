@@ -1,10 +1,12 @@
 <% provide(:title, @post.title) %>
 
-<h1 class="text-center"><%= @post.title %></h1>
 <div class="row">
   <%= render 'posts/post_user_info' %>
   <div class="col-md-6 col-md-offset-3 mx-auto">
     <div class="card">
+      <h1>
+        <%= @post.title %>
+      </h1>
       <div class="card-body">
         <h2 class="post-subtitle">資格</h2>
         <p class="post-text"><%= @post.certificate.name %></p>
