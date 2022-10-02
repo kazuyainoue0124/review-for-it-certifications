@@ -46,12 +46,13 @@ gem 'listen', '~> 3.3'
 # 環境変数の利用
 gem 'dotenv-rails'
 
+# Capistrano
+gem 'capistrano', '~> 3.16'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails', '~> 5.1.2'
-  # Capistrano
-  gem 'capistrano', '~> 3.16'
 end
 
 group :development do

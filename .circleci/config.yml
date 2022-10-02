@@ -37,21 +37,27 @@ jobs:
       image: ubuntu-2204:2022.07.1
     steps:
       - checkout
-      - run:
-          name: "heroku login"
-          command: docker login -username=_ -p "$HEROKU_API_KEY" registry.heroku.com
-      - run:
-          name: "build docker image"
-          command: docker build --tag registry.heroku.com/$HEROKU_APP_NAME/web -f Dockerfile.prod .
-      - run:
-          name: "push container to registry.heroku.com"
-          command: docker push registry.heroku.com/$HEROKU_APP_NAME/web
-      - run:
-          name: "heroku db migrate"
-          command: heroku run --app $HEROKU_APP_NAME rails db:migrate
-      - run:
-          name: "input sample data to heroku"
-          command: heroku run --app $HEROKU_APP_NAME rails db:seed
+      - add_ssh_keys:
+          fingerprints:
+            - "f7:94:2d:bc:80:4a:b8:40:cb:c7:cd:76:f4:25:b7:20"
+      - deploy:
+          name: Capistrano deploy
+          command: docker-compose -f docker-compose-prod.yml run --rm rails bundle exec cap production deploy:application_set_up
+      # - run:
+      #     name: "heroku login"
+      #     command: docker login -username=_ -p "$HEROKU_API_KEY" registry.heroku.com
+      # - run:
+      #     name: "build docker image"
+      #     command: docker build --tag registry.heroku.com/$HEROKU_APP_NAME/web -f Dockerfile.prod .
+      # - run:
+      #     name: "push container to regibunstry.heroku.com"
+      #     command: docker push registry.heroku.com/$HEROKU_APP_NAME/web
+      # - run:
+      #     name: "heroku db migrate"
+      #     command: heroku run --app $HEROKU_APP_NAME rails db:migrate
+      # - run:
+      #     name: "input sample data to heroku"
+      #     command: heroku run --app $HEROKU_APP_NAME rails db:seed
 workflows:
   version: 2
   build_and_deploy:
