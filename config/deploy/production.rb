@@ -1,6 +1,7 @@
 server '3.114.184.238', user: 'ec2-user', roles: %w[rails]
 
 set :ssh_options, {
+  port: 22,
   keys: %w[~/.ssh/myserverkey.pem],
   forward_agent: true,
   auth_methods: %w[publickey]
