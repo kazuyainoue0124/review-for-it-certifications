@@ -19,8 +19,8 @@ namespace :deploy do
 
   task :application_set_up do
     on roles(:rails) do
-      execute "cd /#{application}/;" "#{docker_compose_path} down"
-      execute "cd /#{application}/;" 'docker rmi -f `docker images -q`'
+      # execute "cd /#{application}/;" "#{docker_compose_path} down"
+      # execute "cd /#{application}/;" 'docker rmi -f `docker images -q`'
       execute "cd /#{application}/;" 'sudo git pull origin #{branch};' "#{docker_compose_path} down;" 'docker rmi -f `docker system prune -f`'
       execute "cd /#{application}/;" "#{docker_compose_path} build;" "#{docker_compose_path} up -d"
     end

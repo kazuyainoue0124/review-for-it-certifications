@@ -7,9 +7,7 @@ services:
     container_name: rails
     command: bundle exec puma -C config/puma.rb -e production
     volumes:
-      - type: bind
-        source: "~/.ssh"
-        target: "~/.ssh"
+      - ~/.ssh:/root/.ssh
       - .:/review_app
       - public-data:/review_app/public
       - tmp-data:/review_app/tmp
