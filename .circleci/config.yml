@@ -39,7 +39,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "f7:94:2d:bc:80:4a:b8:40:cb:c7:cd:76:f4:25:b7:20"
+            - "a9:b8:68:a1:92:b9:4d:0f:dd:d6:d0:97:cc:36:90:c8"
       - deploy:
           name: Capistrano deploy
           command: docker-compose -f docker-compose-prod.yml run --rm rails bundle exec cap production deploy:application_set_up
