@@ -44,7 +44,7 @@ namespace :deploy do
   task :application_set_up do
     on roles(:rails) do
       execute "cd /#{application}/;" 'git pull origin master;' "#{docker_compose_path} down;" 'docker rmi -f `docker images -q`'
-      execute "cd /#{application}/;" "#{docker_compose_path} build;" "#{docker_compose_path} up"
+      execute "cd /#{application}/;" "#{docker_compose_path} build;" "#{docker_compose_path} up -d"
     end
   end
   task :database_set_up do
