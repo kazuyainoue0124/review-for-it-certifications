@@ -1,7 +1,7 @@
 server '3.114.184.238', user: 'ec2-user', roles: %w[rails]
 
 set :ssh_options, {
-  keys: %w[~/.ssh/myserverkey.pem],
+  keys: %w[~/.ssh/id_rsa_f7942dbc804ab840cbc7cd76f425b720],
   forward_agent: true,
   auth_methods: %w[publickey]
 }
