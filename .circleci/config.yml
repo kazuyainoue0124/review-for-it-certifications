@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   test:
     machine:
@@ -34,10 +34,13 @@ jobs:
           command: docker-compose -f docker-compose-dev.yml down
 
 orbs:
-  aws-ecr: circleci/aws-ecr@6.15
-  aws-ecs: circleci/aws-ecs@2.0.0
+  aws-ecr: circleci/aws-ecr@8.1.2
+  aws-ecs: circleci/aws-ecs@3.2.0
 workflows:
   # Nginxデプロイ
+  test:
+    jobs:
+      - test
   nginx-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
