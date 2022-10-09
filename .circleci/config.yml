@@ -66,7 +66,7 @@ workflows:
           # ECSのタスク定義名
           family: 'portfolio'
           # ECSのクラスター名かARNのフルパス
-          cluster-name: 'portfolio-ecs-cluster'
+          cluster: 'portfolio-ecs-cluster'
           # サービス名
           service-name: 'portfolio-alb-service'
           # containerはタスク定義で設定したコンテナ名にする
@@ -95,7 +95,7 @@ workflows:
           # ECSのタスク定義名
           family: 'portfolio'
           # ECSのクラスター名かARNのフルパス
-          cluster-name: 'portfolio-ecs-cluster'
+          cluster: 'portfolio-ecs-cluster'
           # サービス名
           service-name: 'portfolio-alb-service'
           # containerはタスク定義で設定したコンテナ名にする
