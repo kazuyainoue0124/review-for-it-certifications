@@ -44,12 +44,12 @@ workflows:
   nginx-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
-          #AWS_ECR_ACCOUNT_URL => ${アカウントID}.dkr.ecr.${リージョン}.amazonaws.com
-          # account-url: AWS_ECR_ACCOUNT_URL
+          #AWS_ECR_REGISTRY_ID => ${レジストリID}.dkr.ecr.ap-northeast-1.amazonaws.com
+          registry-id: AWS_ECR_REGISTRY_ID
           # リージョン
-          region: AWS_REGION
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          region: $AWS_REGION
+          aws-access-key-id: $AWS_ACCESS_KEY_ID
+          aws-secret-access-key: $AWS_SECRET_ACCESS_KEY
           # ECRにリポジトリがなかったら創るか？
           create-repo: true
           # Dockerfleのパス(デフォルトはカレントディレクトリのパス)
@@ -76,10 +76,11 @@ workflows:
   rails-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
-          # account-url: AWS_ECR_ACCOUNT_URL
-          region: AWS_REGION
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          #AWS_ECR_REGISTRY_ID => ${レジストリID}.dkr.ecr.ap-northeast-1.amazonaws.com
+          registry-id: $AWS_ECR_REGISTRY_ID
+          region: $AWS_REGION
+          aws-access-key-id: $AWS_ACCESS_KEY_ID
+          aws-secret-access-key: $AWS_SECRET_ACCESS_KEY
           # ECRにリポジトリがなかったら創るか？
           create-repo: true
           dockerfile: ./Dockerfile.prod
