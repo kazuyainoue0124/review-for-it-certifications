@@ -4,7 +4,7 @@
 <div class="mb-3 w-75 mx-auto">
   <h3 class="text-center">新規登録</h3>
   <div class="col-md-6 col-md-offset-3 mx-auto" id="signup-form">
-    <%= form_with(model: @user, local: false) do |f| %>
+    <%= form_with(model: @user, local: true) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <%= f.label :name, "ユーザー名" %>
       <%= f.text_field :name, class: 'form-control' %>
