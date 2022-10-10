@@ -37,10 +37,10 @@ orbs:
   aws-ecr: circleci/aws-ecr@8.1.2
   aws-ecs: circleci/aws-ecs@3.2.0
 workflows:
+  # test:
+  #   jobs:
+  #     - test
   # Nginxデプロイ
-  test:
-    jobs:
-      - test
   nginx-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
