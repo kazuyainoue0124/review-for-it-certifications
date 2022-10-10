@@ -11,7 +11,7 @@
       <%= f.password_field :password, class: 'form-control', id: "password" %>
       <div class="d-grid col-12">
         <%= f.submit yield(:button_text), class: "btn btn-primary" %>
-        <p>新規登録は<%= link_to "こちら", signup_path %></p>
+        <p>新規登録は<%= link_to "こちら", signup_path, class: "button-to-create-user" %></p>
       </div>
     <% end %>
   </div>
