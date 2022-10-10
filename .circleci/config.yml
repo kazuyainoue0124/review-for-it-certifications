@@ -1,6 +1,6 @@
-version: 2
+version: 2.1
 jobs:
-  build:
+  test:
     machine:
       image: ubuntu-2204:2022.07.1
     steps:
@@ -32,40 +32,109 @@ jobs:
       - run:
           name: docker-compose down
           command: docker-compose -f docker-compose-dev.yml down
-  deploy:
-    machine:
-      image: ubuntu-2204:2022.07.1
-    steps:
-      - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "f7:94:2d:bc:80:4a:b8:40:cb:c7:cd:76:f4:25:b7:20"
-      - run:
-          name: Capistrano deploy
-          command: docker-compose -f docker-compose-prod.yml run --rm rails bundle exec cap production deploy:application_set_up
-      # - run:
-      #     name: "heroku login"
-      #     command: docker login -username=_ -p "$HEROKU_API_KEY" registry.heroku.com
-      # - run:
-      #     name: "build docker image"
-      #     command: docker build --tag registry.heroku.com/$HEROKU_APP_NAME/web -f Dockerfile.prod .
-      # - run:
-      #     name: "push container to regibunstry.heroku.com"
-      #     command: docker push registry.heroku.com/$HEROKU_APP_NAME/web
-      # - run:
-      #     name: "heroku db migrate"
-      #     command: heroku run --app $HEROKU_APP_NAME rails db:migrate
-      # - run:
-      #     name: "input sample data to heroku"
-      #     command: heroku run --app $HEROKU_APP_NAME rails db:seed
+
+orbs:
+  aws-ecr: circleci/aws-ecr@8.1.2
+  aws-ecs: circleci/aws-ecs@3.2.0
 workflows:
-  version: 2
-  build_and_deploy:
+  # test:
+  #   jobs:
+  #     - test
+  # Nginxデプロイ
+  nginx-deploy:
     jobs:
-      - build
-      - deploy:
-          requires:
-            - build
+      - aws-ecr/build-and-push-image:
+          #AWS_ECR_ACCOUNT_URL => ${アカウントID}.dkr.ecr.${リージョン}.amazonaws.com
+          # account-url: AWS_ECR_ACCOUNT_URL
+          # リージョン
+          region: AWS_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          # ECRにリポジトリがなかったら創るか？
+          create-repo: true
+          # Dockerfleのパス(デフォルトはカレントディレクトリのパス)
+          dockerfile: ./containers/nginx/Dockerfile
+          # ECRのリポジトリ
+          repo: nginx-portfolio
+          tag: "${CIRCLE_SHA1}"
           filters:
             branches:
               only: master
+      - aws-ecs/deploy-service-update:
+          requires:
+            - aws-ecr/build-and-push-image
+          # ECSのタスク定義名
+          family: 'portfolio'
+          # ECSのクラスター名かARNのフルパス
+          cluster: 'portfolio-ecs-cluster'
+          # サービス名
+          service-name: 'portfolio-alb-service'
+          # containerはタスク定義で設定したコンテナ名にする
+          container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
+
+  # Railsデプロイ
+  rails-deploy:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          # account-url: AWS_ECR_ACCOUNT_URL
+          region: AWS_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          # ECRにリポジトリがなかったら創るか？
+          create-repo: true
+          dockerfile: ./Dockerfile.prod
+          # ECRのリポジトリ
+          repo: rails-portfolio
+          tag: "${CIRCLE_SHA1}"
+          filters:
+            branches:
+              only: master
+      - aws-ecs/deploy-service-update:
+          requires:
+            - aws-ecr/build-and-push-image
+          # ECSのタスク定義名
+          family: 'portfolio'
+          # ECSのクラスター名かARNのフルパス
+          cluster: 'portfolio-ecs-cluster'
+          # サービス名
+          service-name: 'portfolio-alb-service'
+          # containerはタスク定義で設定したコンテナ名にする
+          container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
+
+#   deploy:
+#     machine:
+#       image: ubuntu-2204:2022.07.1
+#     steps:
+#       - checkout
+#       - add_ssh_keys:
+#           fingerprints:
+#             - "f7:94:2d:bc:80:4a:b8:40:cb:c7:cd:76:f4:25:b7:20"
+#       - run:
+#           name: Capistrano deploy
+#           command: docker-compose -f docker-compose-prod.yml run --rm rails bundle exec cap production deploy:application_set_up
+#       - run:
+#           name: "heroku login"
+#           command: docker login -username=_ -p "$HEROKU_API_KEY" registry.heroku.com
+#       - run:
+#           name: "build docker image"
+#           command: docker build --tag registry.heroku.com/$HEROKU_APP_NAME/web -f Dockerfile.prod .
+#       - run:
+#           name: "push container to regibunstry.heroku.com"
+#           command: docker push registry.heroku.com/$HEROKU_APP_NAME/web
+#       - run:
+#           name: "heroku db migrate"
+#           command: heroku run --app $HEROKU_APP_NAME rails db:migrate
+#       - run:
+#           name: "input sample data to heroku"
+#           command: heroku run --app $HEROKU_APP_NAME rails db:seed
+# workflows:
+#   version: 2
+#   build_and_deploy:
+#     jobs:
+#       - build
+#       - deploy:
+#           requires:
+#             - build
+#           filters:
+#             branches:
+#               only: master

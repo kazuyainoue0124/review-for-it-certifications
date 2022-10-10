@@ -1,5 +1,8 @@
 FROM ruby:3.1.2
 
+# ECS用に追記
+ENV RAILS_ENV=production
+
 # yarnパッケージ管理ツールのインストール
 RUN apt-get update && apt-get install -y curl apt-transport-https wget && \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
@@ -29,3 +32,10 @@ EXPOSE 3000
 # USER app
 RUN mkdir -p tmp/sockets
 RUN mkdir -p tmp/pids
+
+# ECS用に追記
+VOLUME /review_app/public
+VOLUME /review_app/tmp
+
+# ECS用に追記
+CMD /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec puma -C config/puma.rb"
