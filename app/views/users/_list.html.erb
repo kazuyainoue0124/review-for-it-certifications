@@ -11,5 +11,7 @@
   </div>
 <% end %>
 <div class="d-flex justify-content-center">
-  <%== pagy_bootstrap_nav(@pagy) %>
+  <% if @users.count > 10 %>
+    <%== pagy_bootstrap_nav(@pagy) %>
+  <% end %>
 </div>
