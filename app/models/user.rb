@@ -40,4 +40,9 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+
+  # フォロワー数のランキングを取得
+  def self.create_follower_ranks
+    User.find(Relationship.group(:followed_id).order('count(followed_id) desc').limit(10).pluck(:followed_id))
+  end
 end

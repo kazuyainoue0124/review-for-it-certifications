@@ -3,6 +3,8 @@ class BookmarksController < ApplicationController
 
   def index
     @pagy, @bookmarks = pagy(Bookmark.where(user_id: current_user.id))
+    @certificate_ranks = Certificate.create_certificate_ranks
+    @follower_ranks = User.create_follower_ranks
   end
 
   def create
