@@ -3,6 +3,8 @@ class LikesController < ApplicationController
 
   def index
     @pagy, @likes = pagy(Like.where(user_id: current_user.id))
+    @certificate_ranks = Certificate.create_certificate_ranks
+    @follower_ranks = User.create_follower_ranks
   end
 
   def create

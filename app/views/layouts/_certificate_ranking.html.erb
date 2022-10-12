@@ -1,0 +1,12 @@
+<section>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title text-center">最も役に立った資格</h5>
+      <p class="card-text">
+        <% @certificate_ranks.each.with_index(1) do |certificate, i| %>
+          第<%= i %>位:<%= link_to certificate.name, search_path(word: certificate.name) %><br>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</section>

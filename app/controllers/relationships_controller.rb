@@ -15,11 +15,15 @@ class RelationshipsController < ApplicationController
   def followings
     user = User.find(params[:user_id])
     @pagy, @users = pagy(user.followings)
+    @certificate_ranks = Certificate.create_certificate_ranks
+    @follower_ranks = User.create_follower_ranks
   end
 
   # フォロワー一覧
   def followers
     user = User.find(params[:user_id])
     @pagy, @users = pagy(user.followers)
+    @certificate_ranks = Certificate.create_certificate_ranks
+    @follower_ranks = User.create_follower_ranks
   end
 end

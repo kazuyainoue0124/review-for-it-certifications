@@ -7,7 +7,8 @@ RSpec.describe 'Sessions', type: :system do
 
   describe '#new' do
     context '有効な値の場合' do
-      let(:user) { create(:user, :a) }
+      let!(:certificate) { create(:certificate, :a) }
+      let(:user) { create(:user, :a, certificate_id: certificate.id) }
       it 'ログインユーザー用のページレイアウトが表示されること' do
         visit login_path
         fill_in 'session[email]', with: user.email

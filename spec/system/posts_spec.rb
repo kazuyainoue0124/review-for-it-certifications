@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Posts', type: :system do
-  let!(:user) { create(:user, :a) }
   let!(:certificate) { create(:certificate, :a) }
+  let!(:user) { create(:user, :a, certificate_id: certificate.id) }
   let(:post) { build(:post) }
 
   before do

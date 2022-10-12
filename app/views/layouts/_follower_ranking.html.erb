@@ -1,0 +1,12 @@
+<section>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title text-center">フォロワー数</h5>
+      <p class="card-text">
+        <% @follower_ranks.each.with_index(1) do |follower, i| %>
+          第<%= i %>位:<%= link_to follower.name, user_path(follower) %><br>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</section>
