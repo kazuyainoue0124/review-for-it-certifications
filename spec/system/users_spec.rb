@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
+  let!(:certificate) { create(:certificate, :a) }
   let(:user) { build(:user, :a) }
+  let!(:another_user) { create(:user, :a, certificate_id: certificate.id) }
   before do
     driven_by(:rack_test)
   end

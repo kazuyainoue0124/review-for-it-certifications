@@ -7,7 +7,7 @@ RSpec.describe 'ログイン', type: :system do
   let!(:certificate) { create(:certificate, :a) }
   let!(:certificate) { create(:certificate, :b) }
   let!(:certificate) { create(:certificate, :c) }
-  let(:user) { create(:user, :a) }
+  let(:user) { create(:user, :a, certificate_id: certificate.id) }
 
   before do
     driven_by(:rack_test)

@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
+  let!(:certificate1) { create(:certificate, :a) }
+  let!(:certificate2) { create(:certificate, :b) }
+  let!(:certificate3) { create(:certificate, :c) }
+  let!(:user) { create(:user, :a, certificate_id: certificate1.id) }
   let!(:user) { create(:user, :a) }
   let(:user_params) { { user: attributes_for(:user, :a) } }
   let(:base_title) { 'IT資格の口コミアプリ' }
@@ -13,7 +17,7 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'GET /:id #show' do
-    let!(:another_user) { create(:user, :b) }
+    let!(:another_user) { create(:user, :b, certificate_id: certificate2.id) }
     it '他ユーザーの場合、タイトルが「ユーザー詳細|IT資格の口コミアプリ」であること' do
       log_in(user)
       get user_path(another_user)

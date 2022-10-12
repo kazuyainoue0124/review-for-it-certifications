@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Likes', type: :system do
-  let!(:user1) { create(:user, :a) }
-  let!(:user2) { create(:user, :b) }
-  let!(:certificate) { create(:certificate, :a) }
-  let!(:post) { create(:post, certificate_id: certificate.id, user_id: user2.id) }
+  let!(:certificate1) { create(:certificate, :a) }
+  let!(:certificate2) { create(:certificate, :b) }
+  let!(:user1) { create(:user, :a, certificate_id: certificate1.id) }
+  let!(:user2) { create(:user, :b, certificate_id: certificate2.id) }
+  let!(:post) { create(:post, certificate_id: certificate1.id, user_id: user2.id) }
 
   before do
     driven_by(:rack_test)
