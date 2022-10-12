@@ -16,7 +16,7 @@ RSpec.describe 'Layouts', type: :system do
       end
 
       it 'タイトルをクリックするとトップページに遷移すること' do
-        click_link 'IT資格の口コミアプリ!!'
+        click_link 'シカクチコミ! - IT資格の口コミアプリ -'
         expect(page.current_path).to eq root_path
       end
 
@@ -37,7 +37,7 @@ RSpec.describe 'Layouts', type: :system do
       end
 
       it 'タイトルをクリックするとトップページに遷移すること' do
-        click_link 'IT資格の口コミアプリ!!'
+        click_link 'シカクチコミ! - IT資格の口コミアプリ -'
         expect(page.current_path).to eq root_path
       end
 
