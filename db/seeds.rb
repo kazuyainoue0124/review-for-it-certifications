@@ -271,53 +271,53 @@ Certificate.create!(
 # end
 
 User.create!(
-  name: "Kazuya",
-  email: "kazuya@example.com",
+  name: 'Kazuya',
+  email: 'kazuya@example.com',
   password: 'password',
   password_confirmation: 'password',
   position_id: 2,
-  job_change_count: "1回",
+  job_change_count: '1回',
   salary_before_two_years: '301~350万円',
   salary_before_one_years: '351~400万円',
   current_salary: '401~450万円',
   certificate_id: 16,
-  profile: "こんにちは！Kazuyaです！"
+  profile: 'こんにちは！Kazuyaです！'
 )
 User.create!(
-  name: "ゆうや",
-  email: "yuya@example.com",
+  name: 'ゆうや',
+  email: 'yuya@example.com',
   password: 'password',
   password_confirmation: 'password',
   position_id: 2,
-  job_change_count: "1回",
+  job_change_count: '1回',
   salary_before_two_years: '401~450万円',
   salary_before_one_years: '401~450万円',
   current_salary: '351~400万円',
   certificate_id: 2,
-  profile: "こんにちは！ゆうやです！"
+  profile: 'こんにちは！ゆうやです！'
 )
 
 Post.create!(
   user_id: 1,
-  title: "【2週間】簿記3級に合格したので勉強法を解説！",
+  title: '【2週間】簿記3級に合格したので勉強法を解説！',
   certificate_id: 16,
-  study_period: "~1ヶ月",
-  how_to_study: "「スッキリわかる日商簿記3級」という参考書を使って勉強しました。テキストと過去問題集の2冊とも購入し、テキストを通読後はひたすら問題演習をしたら合格できました。",
-  valuable_score: "すごく役に立った",
-  how_change: "会計業務の全体像を知るのに役立ちました。",
-  recommend_score: "すごくおすすめ",
-  recommended_person: "会計業務について学びたい人。会計の雰囲気を掴みたい人。",
-  comment: "簿記は3級なら簡単に受かるのでコスパが良いと思います！取るべき資格に迷ったらおすすめです！"
+  study_period: '~1ヶ月',
+  how_to_study: '「スッキリわかる日商簿記3級」という参考書を使って勉強しました。テキストと過去問題集の2冊とも購入し、テキストを通読後はひたすら問題演習をしたら合格できました。',
+  valuable_score: 'すごく役に立った',
+  how_change: '会計業務の全体像を知るのに役立ちました。',
+  recommend_score: 'すごくおすすめ',
+  recommended_person: '会計業務について学びたい人。会計の雰囲気を掴みたい人。',
+  comment: '簿記は3級なら簡単に受かるのでコスパが良いと思います！取るべき資格に迷ったらおすすめです！'
 )
 Post.create!(
   user_id: 2,
-  title: "基本情報の資格を取得できたので勉強法をまとめます！",
+  title: '基本情報の資格を取得できたので勉強法をまとめます！',
   certificate_id: 2,
-  study_period: "~3ヶ月",
-  how_to_study: "「キタミ式イラストIT塾 基本情報技術者」という参考書でインプットしつつ、「基本情報技術者過去問道場」というサイトで問題演習をしました。このサイトは無料で過去問が解き放題な上に、分野別に解いたりもできるので非常におすすめです。",
-  valuable_score: "どちらかと言うと役に立った",
-  how_change: "未経験でIT業界に転職してきたためITに関する知識が全くありませんでしたが、この資格を通じて得た知識によって、コンピュータやプログラムについてザックリと把握できたように思います。",
-  recommend_score: "どちらかと言うとおすすめ",
-  recommended_person: "未経験からIT業界に転職してきた人や、コンピュータサイエンスの全体像を大まかに知りたい人におすすめです。",
-  comment: "基本情報は過去問の焼き回しが多く、テスト対策のみでも合格できますが、どうせ取るならしっかりと中身を理解して受かった方がいいと思ってる派です！この資格にはそれだけの価値があった気がします！"
+  study_period: '~3ヶ月',
+  how_to_study: '「キタミ式イラストIT塾 基本情報技術者」という参考書でインプットしつつ、「基本情報技術者過去問道場」というサイトで問題演習をしました。このサイトは無料で過去問が解き放題な上に、分野別に解いたりもできるので非常におすすめです。',
+  valuable_score: 'どちらかと言うと役に立った',
+  how_change: '未経験でIT業界に転職してきたためITに関する知識が全くありませんでしたが、この資格を通じて得た知識によって、コンピュータやプログラムについてザックリと把握できたように思います。',
+  recommend_score: 'どちらかと言うとおすすめ',
+  recommended_person: '未経験からIT業界に転職してきた人や、コンピュータサイエンスの全体像を大まかに知りたい人におすすめです。',
+  comment: '基本情報は過去問の焼き回しが多く、テスト対策のみでも合格できますが、どうせ取るならしっかりと中身を理解して受かった方がいいと思ってる派です！この資格にはそれだけの価値があった気がします！'
 )
