@@ -1,24 +1,41 @@
-# README
+# 「シカクチコミ」 - SIerで働く社員向けにIT資格のクチコミアプリを作りました！
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 使用技術一覧
+- フロントエンド
+  - HTML/CSS
+  - JavaScript
+  - jQuery
 
-Things you may want to cover:
+- バックエンド
+  - Ruby3.1.2
+  - Ruby on Rails6.1.6
+  - MySQL8.0
 
-* Ruby version
+- インフラ
+  - AWS(VPC/RDS/ALB/ACM/Route53/Fargate/ECR/ECS)
 
-* System dependencies
+- テスト
+  - RSpec
 
-* Configuration
+- CI/CD
+  - CircleCI
 
-* Database creation
+- バージョン管理
+  - Git/GitHub
 
-* Database initialization
+- 開発環境
+  - VScode
+  - Docker
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 機能一覧
+- ユーザー新規登録/ログイン
+- プロフィール編集
+- 投稿
+- 投稿一覧
+- 投稿詳細
+- いいね！
+- ブックマーク
+- フォロー/フォロー解除
+- フォロー一覧/フォロワー一覧
+- 投稿検索/ユーザー検索
+- 最も役に立った資格ランキング/フォロワー数ランキング
