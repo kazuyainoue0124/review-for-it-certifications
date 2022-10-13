@@ -17,7 +17,7 @@
       <%= f.select :recommend_score, ["すごくおすすめ", "どちらかと言うとおすすめ", "どちらとも言えない", "どちらかと言うとおすすめではない", "まったくおすすめではない"], {include_blank: '選択してください'}, class: 'form-control' %>
       <%= f.label :recommended_person, "どんな人におすすめか？" %>
       <%= f.text_area :recommended_person, class: 'form-control' %>
-      <%= f.label :comment, "コメント" %>
+      <%= f.label :c, "コメント" %>
       <%= f.text_area :comment, class: 'form-control' %>
       <div class="d-grid col-12">
         <%= f.submit yield(:button_text), class: "btn btn-primary" %>
