@@ -48,7 +48,11 @@
 - 最も役に立った資格ランキング/フォロワー数ランキング
 
 ## ER図
-![Portfolio drawio](https://user-images.githubusercontent.com/88877589/195881768-90751926-8eb6-4398-aa95-ec8ffb081b7e.png)
+![ER図-Portfolio(ER図) drawio](https://user-images.githubusercontent.com/88877589/195987620-9f1c2738-cd92-47c5-afab-30c0f5b92f00.png)
+
+## インフラ構成図
+![インフラ構成図 drawio](https://user-images.githubusercontent.com/88877589/195987535-344f3945-4654-41ba-8df0-5981dd75af89.png)
+
 
 ## 本ポートフォリオ作成の動機・背景
 本ポートフォリオを作るに至った動機や背景をまとめます。
