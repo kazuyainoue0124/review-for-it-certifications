@@ -3,7 +3,6 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title"><%=link_to @post.user.name, user_path(@post.user) %></h5>
-        <%= link_to "@user1accountid", "#", class: "card-link" %>
         <p class="card-text"><%= @post.user.profile %></p>
         <%= link_to @post.user.followings.count.to_s + " フォロー", user_followings_path(@post.user), class: "card-link" %>
         <%= link_to @post.user.followers.count.to_s + " フォロワー", user_followers_path(@post.user), class: "card-link" %>
