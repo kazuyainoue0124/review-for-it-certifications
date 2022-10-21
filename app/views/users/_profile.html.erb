@@ -10,7 +10,6 @@
         <%= link_to "フォロー", user_relationships_path(@user.id), method: :post, class: "btn btn-primary btn-lg", id: "follow-btn" %>
       <% end %>
     <% end %>
-    <h6 class=""><%=  "@user1accountid" %></h6>
     <p class="card-text">
       <%= link_to @user.followings.count.to_s + " フォロー", user_followings_path(@user), class: "card-link" %>
       <%= link_to @user.followers.count.to_s + " フォロワー", user_followers_path(@user), class: "card-link" %>
