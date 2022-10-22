@@ -2,12 +2,12 @@
   <div class="card-body text-left">
     <h5 class="card-title text-left" id="profile-name"><%= @user.name %></h5>
     <% if current_user?(@user) %>
-      <%= link_to "編集", edit_user_path(current_user), class: "btn btn-primary btn-lg", id: "user-edit-btn" %>
+      <%= link_to "編集", edit_user_path(current_user), class: "btn", id: "user-edit-btn" %>
     <% else %>
       <% if current_user != nil && current_user.following?(@user) %>
-        <%= link_to "フォロー解除", user_relationships_path(@user.id), method: :delete, class: "btn btn-primary btn-lg", id: "follow-btn" %>
+        <%= link_to "フォロー中", user_relationships_path(@user.id), method: :delete, class: "btn", id: "follow-btn" %>
       <% elsif current_user != nil %>
-        <%= link_to "フォロー", user_relationships_path(@user.id), method: :post, class: "btn btn-primary btn-lg", id: "follow-btn" %>
+        <%= link_to "フォロー", user_relationships_path(@user.id), method: :post, class: "btn", id: "follow-btn" %>
       <% end %>
     <% end %>
     <p class="card-text">
