@@ -17,7 +17,7 @@ RSpec.describe 'Relationships', type: :system do
       expect(user2.followers.count).to eq(1)
       expect(user1.followings.count).to eq(1)
 
-      click_link 'フォロー解除'
+      click_link 'フォロー中'
       expect(user2.followers.count).to eq(0)
       expect(user1.followings.count).to eq(0)
     end

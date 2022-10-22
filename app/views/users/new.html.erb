@@ -15,7 +15,7 @@
       <%= f.label :password_confirmation, "パスワード確認" %>
       <%= f.password_field :password_confirmation, class: 'form-control', id: "password_confirmation" %>
       <div class="d-grid col-12">
-        <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+        <%= f.submit yield(:button_text), class: "btn" %>
       </div>
     <% end %>
   </div>
