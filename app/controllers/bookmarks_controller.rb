@@ -2,7 +2,7 @@ class BookmarksController < ApplicationController
   before_action :logged_in_user
 
   def index
-    @pagy, @bookmarks = pagy(Bookmark.where(user_id: current_user.id))
+    @pagy, @bookmarks = pagy(Bookmark.where(user_id: current_user.id), items: 5)
     @certificate_ranks = Certificate.create_certificate_ranks
     @follower_ranks = User.create_follower_ranks
   end

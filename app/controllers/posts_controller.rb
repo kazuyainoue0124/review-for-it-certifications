@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :logged_in_user, only: %i[new create destroy]
   def index
-    @pagy, @posts = pagy(Post.all)
+    @pagy, @posts = pagy(Post.all, items: 5)
     @follower_ranks = User.create_follower_ranks
     @certificate_ranks = Certificate.create_certificate_ranks
   end
