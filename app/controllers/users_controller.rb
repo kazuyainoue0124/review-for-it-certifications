@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @pagy, @posts = pagy(@user.posts)
+    @pagy, @posts = pagy(@user.posts, items: 5)
     @follower_ranks = User.create_follower_ranks
     @certificate_ranks = Certificate.create_certificate_ranks
   end
