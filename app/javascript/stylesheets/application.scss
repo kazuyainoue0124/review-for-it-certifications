@@ -170,3 +170,12 @@ h1{
   box-shadow: 0 0.375rem 1.5rem 0 rgba(140, 152, 164, 0.13);
   border-radius: 0.5rem;
 }
+
+.page-link {
+  color: #9884EF;
+}
+
+.page-item.active .page-link {
+  background-color: #9884EF;
+  border-color: #9884EF;
+}
