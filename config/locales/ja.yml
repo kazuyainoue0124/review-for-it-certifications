@@ -5,3 +5,9 @@ ja:
         name: 名前
         email: メールアドレス
         password: パスワード
+      post:
+        title: タイトル
+        certificate_id: 資格
+        study_period: 学習期間
+        valuable_score: 資格が実務に役立ったか？
+        recommend_score: おすすめ度
