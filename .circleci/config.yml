@@ -52,7 +52,7 @@ workflows:
           create-repo: true
           dockerfile: ./containers/nginx/Dockerfile
           # ECRのリポジトリ
-          repo: nginx-portfolio
+          repo: nginx
           tag: "${CIRCLE_SHA1}"
           filters:
             branches:
@@ -61,7 +61,7 @@ workflows:
           requires:
             - aws-ecr/build-and-push-image
           family: 'portfolio'
-          cluster: 'portfolio-ecs-cluster'
+          cluster: 'portfolio-cluster'
           service-name: 'portfolio-alb-service'
           container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
 
@@ -76,7 +76,7 @@ workflows:
           # ECRにリポジトリがなかったら創る
           create-repo: true
           dockerfile: ./Dockerfile.prod
-          repo: rails-portfolio
+          repo: rails
           tag: "${CIRCLE_SHA1}"
           filters:
             branches:
@@ -85,6 +85,6 @@ workflows:
           requires:
             - aws-ecr/build-and-push-image
           family: 'portfolio'
-          cluster: 'portfolio-ecs-cluster'
+          cluster: 'portfolio-cluster'
           service-name: 'portfolio-alb-service'
           container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
