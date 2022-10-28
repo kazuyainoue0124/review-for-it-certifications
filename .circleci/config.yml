@@ -60,7 +60,7 @@ workflows:
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
-          family: 'portfolio'
+          family: 'portfolio_task'
           cluster: 'portfolio-cluster'
           service-name: 'portfolio-alb-service'
           container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
@@ -84,7 +84,7 @@ workflows:
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
-          family: 'portfolio'
+          family: 'portfolio_task'
           cluster: 'portfolio-cluster'
           service-name: 'portfolio-alb-service'
           container-image-name-updates: "container=rails,tag=${CIRCLE_SHA1}"
