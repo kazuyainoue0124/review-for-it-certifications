@@ -19,7 +19,7 @@
 
 ### インフラ
 - AWS(VPC/RDS/ALB/ACM/Route53/Fargate/ECR/ECS)
-- Terraform([別リポジトリ](https://github.com/kazuyainoue0124/infrastructure-portfolio)に記載)
+- Terraform([別リポジトリ](https://github.com/kazuyainoue0124/infrastructure-for-portfolio)に記載)
 
 ### テスト
 - RSpec
