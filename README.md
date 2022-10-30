@@ -4,7 +4,7 @@
 - そもそもこの資格って取る価値あるのかなぁ……？
 
 こういった悩みを抱えるSIerの若手社員をターゲットに、IT資格に特化したクチコミサイト「シカクチコミ」を作りました！<br>
-アプリ本体は[こちら](https://shikakuchikomi.net/)です！
+アプリ本体：[https://shikakuchikomi.net/](https://shikakuchikomi.net/)
 <br>
 ## 使用技術一覧
 本ポートフォリオで用いた技術を列挙します。
