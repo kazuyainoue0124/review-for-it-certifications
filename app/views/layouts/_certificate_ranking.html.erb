@@ -5,7 +5,7 @@
       <p class="card-text">
         <% if @certificate_ranks.any? %>
           <% @certificate_ranks.each.with_index(1) do |certificate, i| %>
-            第<%= i %>位:<%= link_to certificate.name, search_path(word: certificate.name) %><br>
+            第<%= i %>位:<%= link_to certificate.name, search_path(id: certificate.id, word: certificate.name) %><br>
           <% end %>
         <% end %>
       </p>
