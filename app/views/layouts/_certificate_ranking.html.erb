@@ -3,7 +3,7 @@
     <div class="card-body">
       <h5 class="card-title text-center">最も役に立った資格</h5>
       <p class="card-text">
-        <% if @certificate_ranks.any? %>
+        <% if @certificate_ranks&.any? %>
           <% @certificate_ranks.each.with_index(1) do |certificate, i| %>
             第<%= i %>位:<%= link_to certificate.name, search_path(id: certificate.id, word: certificate.name) %><br>
           <% end %>

@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
-  let(:post_params) { { post: attributes_for(:post) } }
+  let(:post_params) { { post: attributes_for(:post, :'ITパスポートに合格しました!') } }
 
   describe 'GET /index #index' do
-    it 'タイトルが「ログイン|IT資格の口コミアプリ」であること' do
+    it 'タイトルが「ログイン|シカクチコミ!」であること' do
       get posts_path
       expect(response.body).to include full_title('ホーム')
     end

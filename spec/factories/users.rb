@@ -1,5 +1,27 @@
 FactoryBot.define do
   factory :user do
+    
+    trait :'山田太郎' do
+      name { '山田太郎' }
+      email { 'yamada@gmail.com' }
+      password { 'password' }
+      password_confirmation { 'password' }
+    end
+
+    trait :'佐藤翼' do
+      name { '佐藤翼' }
+      email { 'sato@gmail.com' }
+      password { 'password' }
+      password_confirmation { 'password' }
+    end
+
+    trait :'加藤健斗' do
+      name { '加藤健斗' }
+      email { 'kato@gmail.com' }
+      password { 'password' }
+      password_confirmation { 'password' }
+    end
+
     trait :a do
       name { 'サンプルユーザー1' }
       sequence(:email) { |n| "user#{n}@example.com" }

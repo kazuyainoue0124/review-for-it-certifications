@@ -2,31 +2,30 @@ require 'rails_helper'
 
 RSpec.describe Like, type: :model do
   describe 'いいね！モデルのバリデーションチェック' do
-    let!(:certificate) { create(:certificate, :a) }
-    let!(:position) { create(:position, :a) }
+    let(:certificate) { create(:certificate, :'ITパスポート') }
+    let(:user) { create(:user, :'山田太郎') }
+    let(:post) { create(:post, :'ITパスポートに合格しました!', user_id: user.id, certificate_id: certificate.id) }
 
     context 'データが有効なとき' do
-      let!(:user) { create(:user, :a) }
-      let!(:post) { create(:post, certificate_id: certificate.id, user_id: user.id) }
-      let(:like) { create(:like, :a, post_id: post.id, user_id: user.id) }
-
       it '登録されること' do
+        another_user = create(:user, :'佐藤翼')
+        like = create(:like, user_id: another_user.id, post_id: post.id)
         expect(like).to be_valid
       end
     end
 
     context 'データが無効なとき' do
-      let(:like_without_user_id) { build(:like, :a, user_id: nil) }
-      let(:like_without_post_id) { build(:like, :a, post_id: nil) }
-
       it 'ユーザーIDがなければ登録されないこと' do
-        like_without_user_id.valid?
-        expect(like_without_user_id.errors[:user_id]).to include('を入力してください')
+        like = build(:like, user_id: nil, post_id: post.id)
+        like.valid?
+        expect(like.errors[:user_id]).to include('を入力してください')
       end
 
       it 'ポストIDがなければ登録されないこと' do
-        like_without_post_id.valid?
-        expect(like_without_post_id.errors[:post_id]).to include('を入力してください')
+        another_user = create(:user, :'佐藤翼')
+        like = build(:like, user_id: another_user.id, post_id: nil)
+        like.valid?
+        expect(like.errors[:post_id]).to include('を入力してください')
       end
     end
   end
