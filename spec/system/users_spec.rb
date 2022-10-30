@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
-  let!(:certificate) { create(:certificate, :a) }
-  let(:user) { build(:user, :a) }
-  let!(:another_user) { create(:user, :a, certificate_id: certificate.id) }
   before do
     driven_by(:rack_test)
   end
@@ -14,10 +11,10 @@ RSpec.describe 'Users', type: :system do
         visit signup_path
 
         expect do
-          fill_in 'user[name]', with: user.name
-          fill_in 'user[email]', with: user.email
-          fill_in 'user[password]',	with: user.password
-          fill_in 'user[password_confirmation]',	with: user.password_confirmation
+          fill_in 'user[name]', with: '井上和也'
+          fill_in 'user[email]', with: 'inoue@gmail.com'
+          fill_in 'user[password]',	with: 'password'
+          fill_in 'user[password_confirmation]',	with: 'password'
           click_button '登録'
         end.to change(User, :count).by 1
         expect(page).to have_content '新規登録が完了しました！'

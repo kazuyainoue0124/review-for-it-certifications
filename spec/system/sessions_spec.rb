@@ -1,18 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe 'Sessions', type: :system do
+  let!(:user) { create(:user, :'山田太郎', email: 'yamada@gmail.com', password: 'password') }
   before do
     driven_by(:rack_test)
   end
 
   describe '#new' do
     context '有効な値の場合' do
-      let!(:certificate) { create(:certificate, :a) }
-      let(:user) { create(:user, :a, certificate_id: certificate.id) }
       it 'ログインユーザー用のページレイアウトが表示されること' do
         visit login_path
-        fill_in 'session[email]', with: user.email
-        fill_in 'session[password]',	with: user.password
+        fill_in 'session[email]', with: 'yamada@gmail.com'
+        fill_in 'session[password]',	with: 'password'
         click_button 'ログイン'
         expect(page).to_not have_selector "a[href=\"#{login_path}\"]"
         expect(page).to_not have_selector "a[href=\"#{signup_path}\"]"
@@ -22,11 +21,35 @@ RSpec.describe 'Sessions', type: :system do
       end
     end
 
-    context '無効な値の場合' do
+    context '値が入力されていない場合' do
       it 'flashメッセージが表示されること' do
         visit login_path
         fill_in 'session[email]', with: ''
         fill_in 'session[password]',	with: ''
+        click_button 'ログイン'
+        expect(page).to have_selector 'div.alert.alert-danger'
+        visit root_path
+        expect(page).to_not have_selector 'div.alert.alert-danger'
+      end
+    end
+
+    context 'メールアドレスが登録されていない場合' do
+      it 'flashメッセージが表示されること' do
+        visit login_path
+        fill_in 'session[email]', with: 'taro@gmail.com'
+        fill_in 'session[password]',	with: 'password'
+        click_button 'ログイン'
+        expect(page).to have_selector 'div.alert.alert-danger'
+        visit root_path
+        expect(page).to_not have_selector 'div.alert.alert-danger'
+      end
+    end
+
+    context 'パスワードが間違っている場合' do
+      it 'flashメッセージが表示されること' do
+        visit login_path
+        fill_in 'session[email]', with: 'yamada@gmail.com'
+        fill_in 'session[password]',	with: 'yamadataro'
         click_button 'ログイン'
         expect(page).to have_selector 'div.alert.alert-danger'
         visit root_path

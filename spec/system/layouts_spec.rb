@@ -5,8 +5,7 @@ RSpec.describe 'Layouts', type: :system do
     driven_by(:rack_test)
   end
 
-  let!(:certificate1) { create(:certificate, :a) }
-  let(:user) { create(:user, :a, certificate_id: certificate1.id) }
+  let(:user) { create(:user, :'山田太郎') }
 
   describe 'header' do
     context 'ログイン済の場合' do
