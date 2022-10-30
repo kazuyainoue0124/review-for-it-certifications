@@ -22,8 +22,8 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6, maximum: 10 }, allow_nil: true
 
   # ユーザー検索
-  def self.search(word)
-    @user = User.where('profile LIKE?', "%#{word}%")
+  def self.search(id, word)
+    @user = User.where('certificate_id = ? or profile LIKE?', id, word)
   end
 
   # フォローする

@@ -13,8 +13,8 @@ class Post < ApplicationRecord
   validates :recommend_score, presence: true
 
   # 記事検索
-  def self.search(word)
-    @post = Post.where('title LIKE?', "%#{word}%")
+  def self.search(id, word)
+    @post = Post.where('certificate_id = ? or title LIKE?', id, word)
   end
 
   # ブックマーク済かチェック
