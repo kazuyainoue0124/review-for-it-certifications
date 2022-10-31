@@ -1,3 +1,4 @@
+<% provide(:button_text, "テストユーザーでログイン") %>
 <% if logged_in? %>
   <div class="col-md-3">
     <section class="user_info">
@@ -23,5 +24,19 @@
   </div>
 <% else %>
   <div class="col-md-3">
+    <section class="test_user">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">記事投稿、フォロー、ブックマーク、いいね！をするためにはログインが必要です。</p>
+          <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
+            <%= f.hidden_field :email, class: 'form-control', value: 'test@example.com' %>
+            <%= f.hidden_field :password, class: 'form-control', id: "password", value: 'password' %>
+            <div class="d-grid col-12">
+              <%= f.submit yield(:button_text), class: "btn" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </section>
   </div>
 <% end %>
