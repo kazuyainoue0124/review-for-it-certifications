@@ -56,5 +56,18 @@ RSpec.describe 'Sessions', type: :system do
         expect(page).to_not have_selector 'div.alert.alert-danger'
       end
     end
+
+    context 'テストユーザーでログインする場合' do
+      let(:user) { create(:user, name: 'テストユーザー', email: 'test@example.com', password: 'password', password_confirmation: 'password')}
+      it 'ボタンを押すだけでログインできること' do
+        visit root_path
+        click_button 'テストユーザーでログイン'
+        expect(page).to_not have_selector "a[href=\"#{login_path}\"]"
+        expect(page).to_not have_selector "a[href=\"#{signup_path}\"]"
+        expect(page).to have_selector "a[href=\"#{new_post_path}\"]"
+        expect(page).to have_selector "a[href=\"#{logout_path}\"]"
+        expect(page).to have_selector "a[href=\"#{user_path(user)}\"]"
+      end
+    end
   end
 end
