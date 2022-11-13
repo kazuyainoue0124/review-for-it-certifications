@@ -21,4 +21,9 @@ Rails.application.routes.draw do
     resources :bookmarks, only: [:index]
     resources :likes, only: [:index]
   end
+  namespace :api, {format: 'json'} do
+    namespace :v1 do
+      resources :posts, only: [:index, :show]
+    end
+  end
 end
