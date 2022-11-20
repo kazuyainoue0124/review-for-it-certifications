@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
   # ユーザー検索
   def self.search(id, word)
-    @user = User.where('certificate_id = ? or profile LIKE?', id, word)
+    @user = User.where('certificate_id = ? or profile LIKE?', id, '%' + word + '%')
   end
 
   # フォローする
