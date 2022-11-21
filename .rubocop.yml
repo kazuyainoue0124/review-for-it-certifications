@@ -16,6 +16,7 @@ AllCops:
     - "spec/**/*"
     - "app/helpers/*"
     - "config/deploy.rb"
+    - "app/controllers/api/v1/*"
   DisplayCopNames: true
   TargetRubyVersion: 2.6
 

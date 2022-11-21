@@ -14,7 +14,7 @@ class Post < ApplicationRecord
 
   # 記事検索
   def self.search(id, word)
-    @post = Post.where('certificate_id = ? or title LIKE?', id, '%' + word + '%')
+    @post = Post.where('certificate_id = ? or title LIKE ?', id, "%#{word}%")
   end
 
   # ブックマーク済かチェック
